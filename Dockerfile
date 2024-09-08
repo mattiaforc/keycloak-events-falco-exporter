@@ -11,5 +11,5 @@ RUN mvn clean install -Dkeycloak.version=$KC_VERSION
 
 FROM quay.io/keycloak/keycloak:${KC_VERSION}
 
-COPY --from=builder target/spi-falco-event-[0-9].[0-9]-SNAPSHOT.jar /opt/keycloak/providers/
+COPY --from=builder target/spi-falco-event-[0-9].[0-9].[0-9].jar /opt/keycloak/providers/
 RUN /opt/keycloak/bin/kc.sh --verbose build
