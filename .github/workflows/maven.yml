@@ -47,9 +47,4 @@ jobs:
       - name: Create Release
         uses: ncipollo/release-action@v1
         with:
-          tag: ${{ github.ref }}  # Use the current tag for the release
-          name: Release ${{ github.ref }}
-          commit: ${{ github.sha }}
-          draft: false
-          prerelease: false
           artifacts: "target/*.jar"
