@@ -33,6 +33,8 @@ You can see a working example of a Dockerfile keycloak customization (`./Dockerf
 (without needing Maven/Java installed), then from a keycloak base image it will launch the keycloak build script to add
 the Falco provider.
 
+Once you have Keycloak running with the exporter installed and [configured](#configuration), you can enable the Falco event listener for your realm by going into the Realm settings, under the tab Events you will now be able to select `falco`, amongst other event listeners.
+
 ## Configuration
 
 Properties can be set via environment variables (*preferred*, for example `FALCO_ENDPOINT`) or as parameters when
