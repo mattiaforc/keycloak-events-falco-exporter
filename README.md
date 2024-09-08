@@ -94,7 +94,7 @@ Keycloak comes shipped with a `test` realm where Falco events are enabled by def
 so for example, creating a new user under that realm would trigger an event that would be forwarded to Falco.
 
 If you simply want to test this extension without needing to configure/start Falco,
-then you can run `docker-compose up -d --profile extra` that will also run an `echo-server` container on port `7080`.
+then you can run `docker-compose --profile extra up -d` that will also run an `echo-server` container on port `7080`.
 Change the `FALCO_ENDPOINT` variable in the `keycloak` container inside
 `docker-compose.yml` to point to `echo-server:7080`
 and you will see every forwarded event HTTP request logged inside the `echo-server` container.
