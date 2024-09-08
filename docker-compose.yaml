@@ -8,6 +8,8 @@ services:
     build:
       context: ./
       dockerfile: Dockerfile
+      args:
+        KC_VERSION: 21.0.0
     volumes:
       - type: bind
         source: ${PWD}/hack/test-realm.json
