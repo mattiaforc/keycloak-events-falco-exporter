@@ -30,6 +30,8 @@ jobs:
   build:
     needs: test
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
       - uses: actions/checkout@v4
@@ -50,3 +52,4 @@ jobs:
           commit: ${{ github.sha }}
           draft: false
           prerelease: false
+          artifacts: "target/*.jar"
