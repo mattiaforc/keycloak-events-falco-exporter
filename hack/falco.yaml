@@ -1,0 +1,134 @@
+config_files:
+  - /etc/falco/config.d
+
+watch_config_files: true
+
+rules_files:
+  - /etc/falco/falco_rules.yaml
+  - /etc/falco/falco_rules.local.yaml
+  - /etc/falco/rules.d
+  - /etc/falco/keycloak_rules.yaml
+json_output: true
+json_include_output_property: true
+http_output:
+  enabled: true
+  url: "http://falco-sidekick:2801/"
+
+engine:
+  kind: modern_ebpf
+  kmod:
+    buf_size_preset: 4
+    drop_failed_exit: false
+  ebpf:
+    probe: ${HOME}/.falco/falco-bpf.o
+    buf_size_preset: 4
+    drop_failed_exit: false
+  modern_ebpf:
+    cpus_for_each_buffer: 2
+    buf_size_preset: 4
+    drop_failed_exit: false
+  replay:
+    capture_file: ""
+  gvisor:
+    config: ""
+    root: ""
+
+plugins:
+  - name: keycloak
+    library_path: /usr/share/falco/plugins/libkeycloak.so
+    init_config: ''
+    open_params: 'http://0.0.0.0:7080/keycloak'
+
+load_plugins:
+  - keycloak
+
+time_format_iso_8601: false
+priority: debug
+json_include_tags_property: true
+buffered_outputs: false
+rule_matching: first
+outputs_queue:
+  capacity: 0
+
+stdout_output:
+  enabled: true
+
+syslog_output:
+  enabled: true
+
+file_output:
+  enabled: false
+  keep_alive: false
+  filename: ./events.txt
+
+program_output:
+  enabled: false
+  keep_alive: false
+  program: "jq '{text: .output}' | curl -d @- -X POST https://hooks.slack.com/services/XXX"
+
+grpc_output:
+  enabled: false
+
+grpc:
+  enabled: false
+  bind_address: "unix:///run/falco/falco.sock"
+
+  threadiness: 0
+
+webserver:
+  enabled: true
+
+  threadiness: 0
+  listen_port: 8765
+
+  listen_address: 0.0.0.0
+  k8s_healthz_endpoint: /healthz
+
+  prometheus_metrics_enabled: false
+  ssl_enabled: false
+  ssl_certificate: /etc/falco/falco.pem
+
+log_stderr: true
+log_syslog: true
+
+log_level: info
+
+libs_logger:
+  enabled: false
+  severity: debug
+
+output_timeout: 2000
+
+syscall_event_timeouts:
+  max_consecutives: 1000
+
+syscall_event_drops:
+  threshold: .1
+  actions:
+    - log
+    - alert
+  rate: .03333
+  max_burst: 1
+  simulate_drops: false
+
+metrics:
+  enabled: false
+  interval: 1h
+
+  output_rule: true
+
+  rules_counters_enabled: true
+  resource_utilization_enabled: true
+  state_counters_enabled: true
+  kernel_event_counters_enabled: true
+  libbpf_stats_enabled: true
+  plugins_metrics_enabled: true
+  convert_memory_to_mb: true
+  include_empty_values: false
+
+base_syscalls:
+  custom_set: []
+  repair: false
+
+falco_libs:
+  thread_table_size: 262144
