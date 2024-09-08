@@ -5,9 +5,9 @@
 Each release workflow runs and builds the plugin against multiple keycloak versions to ensure compatibility.
 This is the compatibility matrix:
 
-| plugin \ keycloak | 21 | 22 | 23 | 24 | 25 |
+| plugin \ keycloak | v21 | v22 | v23 | v24 | v25 |
 |-------------------|----|----|----|----|----|
-| Plugin 0.1.0      | ✅  | ✅  | ✅  | ✅  | ❌  |
+| 0.1.0      | ✅  | ✅  | ✅  | ✅  | ❌  |
 
 ## Installation
 
@@ -36,7 +36,7 @@ the Falco provider.
 ## Configuration
 
 Properties can be set via environment variables (*preferred*, for example `FALCO_ENDPOINT`) or as parameters when
-starting keycloak (for example `--spi-events-listener-falco-falco-endpoint`).
+starting keycloak (for example `--spi-events-listener-falco-falcoEndpoint`).
 
 - `falcoEndpoint` (`FALCO_ENDPOINT`): Mandatory configuration for the Falco host that will receive the events. This
   could be both HTTP or HTTPS. Its configuration is left to user discretion, see the README for more details on the
