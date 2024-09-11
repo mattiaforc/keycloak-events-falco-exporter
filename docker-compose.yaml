@@ -45,8 +45,13 @@ services:
         read_only: true
         source: ${PWD}/hack/libkeycloak.so
         target: /usr/share/falco/plugins/libkeycloak.so
-    ports:
-      - "7080:7080"
+    entrypoint: /bin/bash
+    command:
+      - -c
+      - |
+        falcoctl index add falcosecurity https://falcosecurity.github.io/falcoctl/index.yaml && \
+        falcoctl artifact install json && \
+        falco
 
   falco-sidekick:
     depends_on: [ falco ]

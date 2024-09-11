@@ -16,7 +16,7 @@ jobs:
       matrix:
         keycloak-version: [ '21.0.0', '22.0.0', '23.0.0', '24.0.0' ] # List of Keycloak versions to test against
     steps:
-      # Checkout the repository
+      # Checkouts the repository
       - name: Checkout repository
         uses: actions/checkout@v3
 

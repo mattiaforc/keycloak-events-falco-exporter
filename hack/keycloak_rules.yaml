@@ -1,7 +1,21 @@
-- rule: Keycloak event received
-  desc: Received keycloak event
-  condition: keycloak.admin.resourceType=USER
-  output: id=%keycloak.eventID error=%keycloak.error realmID=%keycloak.realmID
-  priority: WARNING
+- macro: kc_adm_evt
+  condition: (keycloak.admin.resourceType exists and keycloak.admin.resourceType != "")
+
+- macro: kc_usr_evt
+  condition: (keycloak.user.eventType exists and keycloak.user.eventType != "")
+
+- rule: Keycloak user event
+  desc: Received keycloak user event
+  condition: kc_usr_evt
+  output: event type=%keycloak.user.eventType for user=%keycloak.user.userID on realm=%keycloak.realmID and client=%keycloak.user.clientID with IP=%keycloak.user.ipAddress
+  priority: INFO
   source: keycloak
-  tags: [keycloak]
+  tags: [keycloak, user]
+
+- rule: Keycloak admin event
+  desc: Received keycloak admin event
+  condition: kc_adm_evt
+  output: Action made on user=%json.value[/Representation/username] by user %keycloak.admin.authDetails.userID with IP=%keycloak.admin.authDetails.ipAddress
+  priority: INFO
+  source: keycloak
+  tags: [keycloak, admin]

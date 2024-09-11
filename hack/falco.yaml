@@ -38,9 +38,12 @@ plugins:
     library_path: /usr/share/falco/plugins/libkeycloak.so
     init_config: ''
     open_params: 'http://0.0.0.0:7080/keycloak'
+  - name: json
+    library_path: /usr/share/falco/plugins/libjson.so
 
 load_plugins:
   - keycloak
+  - json
 
 time_format_iso_8601: false
 priority: debug

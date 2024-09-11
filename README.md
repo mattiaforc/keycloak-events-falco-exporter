@@ -1,5 +1,8 @@
 # Keycloak events Falco exporter
 
+To use this exporter, you also have to configure `Falco` by installing and configuring the [Falco
+`keycloak` plugin](https://github.com/mattiaforc/falco-keycloak-plugin).
+
 ## Keycloak compatibility
 
 Each release workflow runs and builds the plugin against multiple keycloak versions to ensure compatibility.
