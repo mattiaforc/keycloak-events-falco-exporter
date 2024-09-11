@@ -88,6 +88,11 @@ The easiest way to test and develop this plugin consists in:
   `docker-compose.yml`).
   See the [Falco plugin repository](https://github.com/mattiaforc/falco-keycloak-plugin) for more
   details or to download the plugin.
+  For example, with `falcoctl` (you can see also how to use that inside the `docker-compose.yml` file): 
+  ```bash
+  falcoctl index add keycloak https://raw.githubusercontent.com/mattiaforc/falco-keycloak-plugin/main/index.yaml
+  falcoctl artifact install keycloak
+  ```
 - Run `docker-compose up -d --build` that will:
     - Build the keycloak plugin and a keycloak docker image with the plugin bundled
     - Run Keycloak and Falco, along with Falco Sidekick (with UI) and its dependencies locally with docker containers.
