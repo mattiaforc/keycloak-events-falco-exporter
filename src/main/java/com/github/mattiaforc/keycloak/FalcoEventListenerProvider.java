@@ -2,12 +2,11 @@ package com.github.mattiaforc.keycloak;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
+import org.jboss.logging.Logger;
 import org.keycloak.events.Event;
 import org.keycloak.events.EventListenerProvider;
 import org.keycloak.events.admin.AdminEvent;
@@ -16,7 +15,7 @@ import java.io.IOException;
 import java.net.URI;
 
 public class FalcoEventListenerProvider implements EventListenerProvider {
-    private static final Log log = LogFactory.getLog(FalcoEventListenerProvider.class);
+    private static final Logger log = Logger.getLogger(FalcoEventListenerProvider.class);
     private final CloseableHttpClient httpClient;
     private final ObjectMapper objectMapper = new ObjectMapper();
     private final FalcoEventListenerConfiguration configuration;
