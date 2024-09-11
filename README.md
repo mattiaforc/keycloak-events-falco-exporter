@@ -9,8 +9,9 @@ Each release workflow runs and builds the plugin against multiple keycloak versi
 This is the compatibility matrix:
 
 | plugin \ keycloak | v21 | v22 | v23 | v24 | v25 |
-|-------------------|----|----|----|----|----|
-| 0.1.0      | ✅  | ✅  | ✅  | ✅  | ❌  |
+|-------------------|----|----|----|----|---|
+| 0.1.0             | ✅  | ✅  | ✅  | ✅  | ❌ |
+| 0.1.1             | ✅  | ✅  | ✅  | ✅  | ✅  |
 
 ## Installation
 
