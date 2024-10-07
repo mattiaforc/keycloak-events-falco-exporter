@@ -8,10 +8,11 @@ To use this exporter, you also have to configure `Falco` by installing and confi
 Each release workflow runs and builds the plugin against multiple keycloak versions to ensure compatibility.
 This is the compatibility matrix:
 
-| plugin \ keycloak | v21 | v22 | v23 | v24 | v25 |
-|-------------------|----|----|----|----|---|
-| 0.1.0             | ✅  | ✅  | ✅  | ✅  | ❌ |
-| 0.1.1             | ✅  | ✅  | ✅  | ✅  | ✅  |
+| plugin \ keycloak | v21 | v22 | v23 | v24 | v25 | v26 |
+|-------------------|-----|-----|-----|-----|-----|-----|
+| 0.1.0             | ✅  | ✅  | ✅  | ✅  | ❌  |  ❌ |
+| 0.1.1             | ✅  | ✅  | ✅  | ✅  | ✅  |  ❌ |
+| 0.2.0             | ✅  | ✅  | ✅  | ✅  | ✅  |  ✅ |
 
 ## Installation
 
