@@ -6,7 +6,9 @@ name: Release Java Package
 on:
   push:
     tags:
-      - 'v*'  # Only trigger on version tag pushes (e.g., v1.0.0)
+      - 'v*'  # Trigger on version tag pushes (e.g., v1.0.0)
+  pull_request:
+    branches: [ main ]  # Trigger on pull requests to main branch
   workflow_dispatch:
 
 jobs:
@@ -14,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        keycloak-version: [ '21.0.0', '22.0.0', '23.0.0', '24.0.0', '25.0.0' ] # List of Keycloak versions to test against
+        keycloak-version: [ '21.0.0', '22.0.0', '23.0.0', '24.0.0', '25.0.0', '26.0.0' ] # List of Keycloak versions to test against
     steps:
       # Checkouts the repository
       - name: Checkout repository
@@ -32,7 +34,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-
+    if: startsWith(github.ref, 'refs/tags/v')  # Only run on version tags
     steps:
       - uses: actions/checkout@v4
       - name: Set up JDK 17
